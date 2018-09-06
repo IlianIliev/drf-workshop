@@ -1,0 +1,5 @@
+#ignore any hidden directory by default
+.*
+*.pyc
+
+postgresql
