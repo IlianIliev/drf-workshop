@@ -1,12 +1,13 @@
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 
-from rest_framework.permissions import AllowAny
+from rest_framework.generics import RetrieveAPIView, UpdateAPIView
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
 
-from .serializers import SignupSerializer
+from .serializers import SignupSerializer, ProfileSerializer
 
 
 class SignupView(APIView):
@@ -31,3 +32,12 @@ class LoginView(APIView):
             return Response({})
         else:
             return Response(form.errors, HTTP_400_BAD_REQUEST)
+
+
+class ProfileView(RetrieveAPIView, UpdateAPIView):
+    serializer_class = ProfileSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def get_object(self):
+        return self.request.user
+

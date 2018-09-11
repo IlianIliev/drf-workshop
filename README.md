@@ -48,3 +48,10 @@
  3. The test will fail (tricky moment wih the UserFactory)
  4. Fix the factory and watch the test succeed
  5. Lets talk about token auth (and JWT)
+ 
+## Retrieving and updating singles instance
+ 1. Create Profile serializer
+ 2. Create profile view
+ 3. Write tests for getting the profile as logged and anonymous user
+ 4. Specify the permissions for the View
+ 5. Add test for profile update
