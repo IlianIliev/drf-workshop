@@ -27,3 +27,17 @@
     - Create a new router and include its URLs
     - Include the API urls in the general URLs config
     - Test that it works `http://127.0.0.1:8000/api/`
+    
+## Adding signup 
+ 1. Let's migrate first
+    `python manage.py migrate`
+ 2. Add the Users to the API
+    - create `users` folder inside the `api` app
+    - add `serializer.py` to the users folder
+    - create a signup serializer with 3 fields: `username`, `email`, `password`
+    - create a signup view (APIView) that users the serializer
+    - install factory-boy
+    - create user factory (`users/factories.py`)
+    - create test case for the view. Use https://gist.github.com/IlianIliev/4dd1d6b667f36be0e501321e195f6db6
+    - add the view to the url config
+    - add a test to verify the serialization  
