@@ -41,3 +41,10 @@
     - create test case for the view. Use https://gist.github.com/IlianIliev/4dd1d6b667f36be0e501321e195f6db6
     - add the view to the url config
     - add a test to verify the serialization  
+
+## Logging in
+ 1. Create a login test an watch it fail
+ 2. Create a LoginView and add it to the url
+ 3. The test will fail (tricky moment wih the UserFactory)
+ 4. Fix the factory and watch the test succeed
+ 5. Lets talk about token auth (and JWT)

@@ -1,7 +1,6 @@
-from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
+from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 
 from api.tests.utils import BaseAPITest
-
 
 
 class SignupTest(BaseAPITest):
@@ -29,3 +28,18 @@ class SignupTest(BaseAPITest):
         self.assertTrue('email' in response)
         self.assertTrue('password' in response)
         self.assertFalse('username' in response)
+
+
+class LoginTest(BaseAPITest):
+    DO_SETUP = True
+    url = 'users/login'
+
+    def test_login(self):
+
+
+        data = {
+            'username': self.user.username,
+            'password': self.password
+        }
+
+        self.post_and_check_status(self.url, data, HTTP_200_OK)
