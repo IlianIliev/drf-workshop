@@ -55,3 +55,17 @@
  3. Write tests for getting the profile as logged and anonymous user
  4. Specify the permissions for the View
  5. Add test for profile update
+ 
+## Using ModelViewSet
+ 1. Create the authors app 
+   - `python manage.py startapp authors`
+   - add `authors` to `INSTALLED_APPS`
+ 2. Create the author models with the following fields: `name`, `date_of_birth`, `website`, `bio`
+ 3. Make the migrations
+ 4. Create the serializer
+ 5. Create the view (extends ModelViewSet)
+ 6. Register the view with the router and take a look at the browsable API
+ 7. Let's add some tests
+ 8. Settings pagination globally
+ 9. Fixing broken tests
+
