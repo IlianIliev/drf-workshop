@@ -69,3 +69,10 @@
  8. Settings pagination globally
  9. Fixing broken tests
 
+
+## Nested Serializers
+ 1. Let's add books app
+ 2. The book model has the following fields: `title`, `authors`, `description`
+ 3. Creating the serializer without relation
+ 4. Adding the nested serializer
+ 5. Can we have link to the author - HyperlinkedModelSerializer
