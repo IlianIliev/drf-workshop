@@ -76,3 +76,9 @@
  3. Creating the serializer without relation
  4. Adding the nested serializer
  5. Can we have link to the author - HyperlinkedModelSerializer
+
+
+## CRUD and Nested Serializers
+ 1. Add test to create book
+ 2. Add test to update existing book
+ 3. Delete book
