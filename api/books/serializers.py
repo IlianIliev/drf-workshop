@@ -10,7 +10,8 @@ class BookSerializer(serializers.ModelSerializer):
     authors = AuthorSerializer(many=True, read_only=True)
     set_authors = serializers.PrimaryKeyRelatedField(
         many=True, queryset=Author.objects.all(), write_only=True, source='authors')
+    owner = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Book
-        fields = ('id', 'title', 'authors', 'description', 'set_authors')
+        fields = ('id', 'title', 'authors', 'description', 'set_authors', 'owner')

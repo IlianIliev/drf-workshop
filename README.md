@@ -82,3 +82,11 @@
  1. Add test to create book
  2. Add test to update existing book
  3. Delete book
+
+
+## Permissions
+ 1. Test that anonymous users can not delete books
+ 2. Set global permissions
+ 3. Add book ownership
+ 4. HiddenField + CurrentUserDefault
+ 5. Protect delete for owner only

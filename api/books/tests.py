@@ -1,4 +1,4 @@
-from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT
+from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT, HTTP_403_FORBIDDEN
 
 from api.tests.utils import BaseAPITest
 
@@ -42,7 +42,7 @@ class BooksTest(BaseAPITest):
         sheckley = AuthorFactory(name='Robert Sheckley')
         pratchett = AuthorFactory(name='Terry Pratchett')
 
-        book = Book.objects.create(title='Bring Me the Head of Prince Charming')
+        book = BookFactory(title='Bring Me the Head of Prince Charming', owner=self.user)
         book.authors.add(zelazny, pratchett)
 
         url = '{}{}/'.format(self.url, book.pk)
@@ -53,17 +53,19 @@ class BooksTest(BaseAPITest):
         self.assertEqual(list(book.authors.all()), [zelazny, sheckley])
 
     def test_delete_book(self):
-        book = BookFactory()
+        book = BookFactory(owner=self.user)
         url = '{}{}/'.format(self.url, book.pk)
         self.delete_and_check_status(url, HTTP_204_NO_CONTENT)
 
+    def test_delete_book_as_anonymous(self):
         self.client.logout()
-
         book = BookFactory()
         url = '{}{}/'.format(self.url, book.pk)
-        self.delete_and_check_status(url, HTTP_204_NO_CONTENT)
+        self.delete_and_check_status(url, HTTP_403_FORBIDDEN)
 
-
-
+    def test_delete_book_belonging_to_another_user(self):
+        book = BookFactory(owner=self.user2)
+        url = '{}{}/'.format(self.url, book.pk)
+        self.delete_and_check_status(url, HTTP_403_FORBIDDEN)
 
 
