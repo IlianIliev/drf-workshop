@@ -68,4 +68,11 @@ class BooksTest(BaseAPITest):
         url = '{}{}/'.format(self.url, book.pk)
         self.delete_and_check_status(url, HTTP_403_FORBIDDEN)
 
+    def test_like_book(self):
+        book = BookFactory(owner=self.user)
+        self.assertFalse(self.user.likes.exists())
 
+        url = '{}{}/like/'.format(self.url, book.pk)
+        self.post_and_check_status(url, {}, HTTP_200_OK)
+
+        self.assertTrue(book in self.user.likes.all())

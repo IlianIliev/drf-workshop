@@ -7,3 +7,4 @@ class Book(models.Model):
     authors = models.ManyToManyField('authors.Author')
     description = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.PROTECT)
+    liked_by = models.ManyToManyField(User, related_name='likes')

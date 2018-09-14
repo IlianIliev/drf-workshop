@@ -90,3 +90,7 @@
  3. Add book ownership
  4. HiddenField + CurrentUserDefault
  5. Protect delete for owner only
+
+
+## Actions
+ 1. Let's create like functionality
