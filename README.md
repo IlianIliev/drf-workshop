@@ -1,6 +1,19 @@
 # Django REST Framework Workshop
 
 
+### Disclaimer
+*This repo shows the creation of REST APIs step by step. Due to its presentational purpose
+some of the endpoints does not have protection and every user can modify the data. Examples of
+such permissions are show in other endpoints (check the **Permissions** section).
+If you use this repo as a reference while building your project, make sure you have properly
+tested the permission to for each endpoint (test CRUD with anonymous user, a user who is the 
+object owner and a user that is not the object owner)*
+
+
+Happy Coding )))
+ 
+
+
 ## Initial setup
  - adding README
  - adding gitignore
