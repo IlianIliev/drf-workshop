@@ -4,6 +4,8 @@ from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_400_BAD_RE
 
 from api.tests.utils import BaseAPITest
 
+from books.factories import BookFactory
+
 
 class SignupTest(BaseAPITest):
     url = 'users/signup'
@@ -69,3 +71,16 @@ class ProfileTest(BaseAPITest):
         user = User.objects.get(pk=self.user.pk)
         self.assertEqual(user.first_name, 'New name')
 
+
+class MyBooksTest(BaseAPITest):
+    url = 'my_books/'
+
+    def test_get(self):
+        BookFactory(owner=self.user)
+        BookFactory(owner=self.user)
+        BookFactory(owner=self.user)
+        BookFactory(owner=self.user2)
+        BookFactory(owner=self.user2)
+
+        data = self.get_and_check_status(self.url, HTTP_200_OK)
+        self.assertEqual(data['count'], 3)

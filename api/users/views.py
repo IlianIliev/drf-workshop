@@ -1,13 +1,17 @@
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 
+from rest_framework import viewsets
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
 
-from .serializers import SignupSerializer, ProfileSerializer
+from api.books.serializers import BookSerializer
+from api.users.serializers import SignupSerializer, ProfileSerializer
+
+from books.models import Book
 
 
 class SignupView(APIView):
@@ -41,3 +45,13 @@ class ProfileView(RetrieveAPIView, UpdateAPIView):
     def get_object(self):
         return self.request.user
 
+
+
+class MyBooksViewSet(viewsets.ModelViewSet):
+    model = Book
+    serializer_class = BookSerializer
+
+    def get_queryset(self):
+        qs = Book.objects.all()
+        qs = qs.filter(owner=self.request.user)
+        return qs

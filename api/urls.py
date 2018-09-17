@@ -4,12 +4,13 @@ from rest_framework import routers
 
 from .authors.views import AuthorViewSet
 from .books.views import BookViewSet
-from .users.views import SignupView, LoginView, ProfileView
+from .users.views import SignupView, LoginView, ProfileView, MyBooksViewSet
 
 
 router = routers.DefaultRouter()
 router.register('authors', AuthorViewSet)
 router.register('books', BookViewSet)
+router.register('my_books', MyBooksViewSet, base_name='my_books')
 
 
 urlpatterns = [

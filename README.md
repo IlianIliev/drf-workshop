@@ -21,7 +21,7 @@
  1. Add `djangorestframework==3.8.2` to `requirements.txt`
  2. Add `rest_framework` to `INSTALLED_APPS`
  3. Create the `api` app.
-    - `python startapp api`
+    - `python manage.py startapp api`
  4. Create a router and add it to the urls
     - Create `urls.py` in `api`
     - Create a new router and include its URLs
@@ -94,3 +94,7 @@
 
 ## Actions
  1. Let's create like functionality
+ 
+
+## Modifying the queryset based on the current user
+ 1. Creating "My books" endpoint
